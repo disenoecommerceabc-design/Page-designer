@@ -1,0 +1,22 @@
+{% macro text(tag, value, path, cls='') -%}
+<{{ tag }} class="{{ cls }}" {% if editing %}contenteditable="plaintext-only" data-path="{{ path }}" spellcheck="true"{% endif %}>{{ value }}</{{ tag }}>
+{%- endmacro %}
+<div class="site theme-{{ project.template }}{% if project.font != 'default' %} has-font{% endif %}" style="--accent:{{ project.accent }};{{ palette }}" data-mode="{{ project.color_mode }}" data-light="{{ light_palette }}" data-dark="{{ dark_palette }}">
+  <header class="site-nav"><a class="site-brand" href="#top">{% if project.business.logo %}<img class="site-logo" src="{{ project.business.logo }}" alt="{{ project.business.name }}">{% else %}{{ project.business.name }}<span>®</span>{% endif %}</a>
+    <nav aria-label="Navegación del sitio">
+    {% if project.modules|selectattr('kind','equalto','products')|list %}<a href="#productos">Colección</a>{% endif %}
+    {% if project.modules|selectattr('kind','equalto','features')|list %}<a href="#servicios">Nosotros</a>{% endif %}
+    {% if project.modules|selectattr('kind','equalto','pricing')|list %}<a href="#planes">Planes</a>{% endif %}
+    {% if project.modules|selectattr('kind','equalto','contact')|list %}<a class="nav-contact" href="#contacto">Hablemos <span>↗</span></a>{% endif %}
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Cambiar entre modo claro y nocturno">☾ / ☀</button></nav>
+  </header>
+  <main id="top">
+  {% for entry in modules %}{% set module = entry.module %}{% set content = entry.content %}
+    <section class="site-section section-{{ module.kind }}" id="{{ module.id }}" style="{{ entry.style }}" data-light="{{ entry.light }}" data-dark="{{ entry.dark }}" {% if editing %}data-module="{{ module.id }}" data-kind="{{ module.kind }}" tabindex="0" aria-label="Módulo {{ module.kind }}"{% endif %}>
+      {% if entry.alias %}<span class="site-anchor" id="{{ entry.alias }}"></span>{% endif %}
+      {% include 'modules/' + module.kind + '.html' %}
+    </section>
+  {% endfor %}
+  </main>
+  <footer class="site-footer"><a href="#top">{{ project.business.name }}®</a><span>{{ project.business.industry }}</span><small>Hecho con intención.</small></footer>
+</div>

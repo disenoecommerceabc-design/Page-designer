@@ -1,0 +1,23 @@
+*
+!Dockerfile
+!FRONT/
+!FRONT/package.json
+!FRONT/package-lock.json
+!FRONT/.npmrc
+!FRONT/landing/
+!FRONT/landing/**
+!FRONT/app/
+!FRONT/app/page.tsx
+!FRONT/app/globals.css
+!FRONT/public/
+!FRONT/public/favicon.svg
+!TAREA FINAL/
+!TAREA FINAL/MODULO WEB_ARMABLE/
+!TAREA FINAL/MODULO WEB_ARMABLE/requirements.txt
+!TAREA FINAL/MODULO WEB_ARMABLE/app/
+!TAREA FINAL/MODULO WEB_ARMABLE/app/**
+**/landing_dist/
+**/__pycache__/
+**/*.pyc
+**/.env*
+**/.dev.vars*

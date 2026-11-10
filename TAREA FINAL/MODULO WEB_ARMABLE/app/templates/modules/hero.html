@@ -1,0 +1,8 @@
+<div class="hero-copy">
+  {{ text('p', content.eyebrow, 'eyebrow', 'eyebrow') }}
+  {{ text('h1', content.title, 'title') }}
+  {{ text('p', content.description, 'description', 'hero-description') }}
+  <a class="site-button" href="{{ content.url }}">{{ content.button }} <span>↗</span></a>
+  <div class="hero-caption"><span class="tiny-line"></span> {{ project.business.industry }}</div>
+</div>
+<div class="hero-visual">{% if content.image %}<img src="{{ content.image }}" alt="{{ content.alt }}" style="object-position:{{ content.focal_x }}% {{ content.focal_y }}%" fetchpriority="high">{% else %}<div class="image-empty">Agrega una imagen desde el panel de edición</div>{% endif %}<span class="visual-label">{{ project.business.name }} — Colección 01</span></div>

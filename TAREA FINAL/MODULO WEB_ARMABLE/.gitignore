@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+!.env.production.example
+deploy/cloudrun.env.yaml
+entregables/
+data/
+*.log
+artifacts/
+/app/landing_dist/

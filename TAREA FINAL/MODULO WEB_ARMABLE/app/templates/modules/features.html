@@ -1,0 +1,2 @@
+<div class="section-heading">{{ text('p', content.eyebrow, 'eyebrow', 'eyebrow') }}{{ text('h2', content.title, 'title') }}{{ text('p', content.description, 'description', 'section-description') }}</div>
+<div class="feature-grid">{% for item in content.items %}<article><span class="feature-number">0{{ loop.index }} /</span>{{ text('h3', item.title, 'items.' ~ loop.index0 ~ '.title') }}{{ text('p', item.description, 'items.' ~ loop.index0 ~ '.description') }}</article>{% endfor %}</div>

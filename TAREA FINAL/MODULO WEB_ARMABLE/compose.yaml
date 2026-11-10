@@ -1,0 +1,43 @@
+services:
+  editor:
+    build: .
+    image: modulo-editor:local
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      DATA_DIR: /data
+      PORT: 8000
+      APP_ENV: ${APP_ENV:-local}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,127.0.0.1}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      REGISTRATION_CODE: ${REGISTRATION_CODE:-}
+      KIE_API_KEY: ${KIE_API_KEY:-}
+      AI_ENABLED: ${AI_ENABLED:-false}
+      AI_DAILY_CREDITS: ${AI_DAILY_CREDITS:-30}
+      AI_GLOBAL_DAILY_CREDITS: ${AI_GLOBAL_DAILY_CREDITS:-60}
+      AI_DAILY_REQUESTS: ${AI_DAILY_REQUESTS:-15}
+      AI_TEXT_CREDITS: ${AI_TEXT_CREDITS:-1}
+      AI_IMAGE_CREDITS: ${AI_IMAGE_CREDITS:-5}
+      AI_DESIGN_CREDITS: ${AI_DESIGN_CREDITS:-3}
+      AI_COOLDOWN_SECONDS: ${AI_COOLDOWN_SECONDS:-5}
+      AI_MAX_OUTPUT_TOKENS: ${AI_MAX_OUTPUT_TOKENS:-1200}
+      KIE_TEXT_MODEL: ${KIE_TEXT_MODEL:-gpt-6-luna}
+      KIE_DESIGN_MODEL: ${KIE_DESIGN_MODEL:-gpt-6.1-terra}
+      KIE_IMAGE_DIRECTOR_MODEL: ${KIE_IMAGE_DIRECTOR_MODEL:-gpt-6-luna}
+      AI_DIRECTOR_MAX_OUTPUT_TOKENS: ${AI_DIRECTOR_MAX_OUTPUT_TOKENS:-6000}
+    volumes:
+      - modulo-data:/data
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 512m
+    cpus: 1.0
+volumes:
+  modulo-data:

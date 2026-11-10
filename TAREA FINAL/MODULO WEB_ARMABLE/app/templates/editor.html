@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#2d6654"><title>Módulo — Tu web, a tu manera</title><link rel="icon" href="/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/editor.css?v=1.3.5"><link rel="stylesheet" href="/static/site.css"><link rel="stylesheet" href="/static/panels.css"><script src="/static/site.js" defer></script><script src="/static/panels.js" defer></script><script src="/static/editor.js?v=1.3.5" defer></script></head>
+<body>
+<header class="app-header">
+  <a class="app-brand" href="/" aria-label="Page Builder, inicio"><span class="brand-mark"><i></i><i></i><i></i></span>builder<span class="beta">BETA</span></a>
+  <a class="editor-home" href="/">← Inicio</a>
+  <div class="project-crumb"><span class="header-divider"></span><span id="project-title">Mi primera web</span><span class="manual-pill" id="document-kind">Web</span></div>
+  <div class="header-actions"><span id="save-status" class="save-status" role="status">Conectando…</span><button class="icon-button" id="account-button" title="Cuenta y plan" aria-label="Cuenta y plan" hidden><span data-icon="external"></span></button><button class="button subtle" id="preview-button"><span data-icon="eye"></span>Vista previa</button><button class="button primary" id="finish-button">Exportar web<span data-icon="arrow"></span></button></div>
+</header>
+<div class="workspace">
+  <aside class="left-panel" id="workspace-left" aria-label="Estructura y edición">
+    <div class="workspace-label">ESPACIO DE TRABAJO</div>
+    <button class="business-summary" id="business-button"><span class="business-avatar" id="business-avatar">F</span><span><strong id="business-name">Forma Studio</strong><small>Tu sitio web</small></span><span data-icon="chevron"></span></button>
+    <div class="left-shortcuts"><button id="business-settings"><span data-icon="settings"></span>Tu negocio<span data-icon="chevron"></span></button></div>
+    <div class="panel-divider"></div>
+    <div class="panel-heading"><span>ESTRUCTURA DE LA PÁGINA</span><span id="module-count">5</span></div>
+    <div id="outline" class="outline" aria-label="Orden de módulos"></div>
+    <div class="outline-hint"><span data-icon="drag"></span>Arrastra para cambiar el orden</div>
+    <div class="panel-divider"></div>
+    <div id="inspector" class="inspector"></div>
+    <div class="usage-panel"><div class="usage-heading"><span><span data-icon="spark"></span>Tu espacio de IA</span><span id="ai-badge">Sin activar</span></div><div class="usage-bar"><span id="usage-progress"></span></div><p id="usage-copy">Edición manual sin límites de IA.</p><button id="usage-button">Ver consumo y actividad <span>↗</span></button></div>
+  </aside>
+  <div class="panel-resizer" data-panel-resizer="left" role="separator" tabindex="0" aria-label="Ajustar ancho del panel izquierdo" aria-orientation="vertical" aria-controls="workspace-left" aria-valuemin="230" aria-valuemax="420" aria-valuenow="240" title="Arrastra para ajustar el ancho. Usa las flechas o haz doble clic para restablecer."></div>
+  <main class="center-panel">
+    <div class="canvas-toolbar"><div class="page-label"><span class="page-dot"></span>Página de inicio<span data-icon="chevron"></span></div><div class="device-switch" role="group" aria-label="Tamaño de vista previa"><button class="active" data-device="desktop" title="Escritorio" aria-label="Escritorio"><span data-icon="monitor"></span></button><button data-device="mobile" title="Móvil" aria-label="Móvil"><span data-icon="phone"></span></button></div><div class="canvas-tools"><button class="icon-button" id="undo-button" title="Deshacer" aria-label="Deshacer"><span data-icon="undo"></span></button><button class="icon-button" id="redo-button" title="Rehacer" aria-label="Rehacer"><span data-icon="redo"></span></button></div></div>
+    <div class="document-toolbar">
+      <div class="document-actions" aria-label="Bibliotecas">
+        <button class="button subtle" id="projects-button"><span data-icon="folder"></span>Mis webs</button>
+        <button class="button subtle" id="templates-button"><span data-icon="layout"></span>Plantillas</button>
+      </div>
+      <div class="document-actions" aria-label="Guardar diseño">
+        <button class="button primary" id="save-button"><span data-icon="save"></span>Guardar mi web</button>
+        <button class="button" id="save-template-button">Guardar como plantilla</button>
+      </div>
+    </div>
+    <div class="canvas-scroll" id="canvas-scroll"><div class="canvas-intro"><div><span class="overline">TU LIENZO, TUS IDEAS</span><h1>Dale forma a tu web.</h1></div><span class="canvas-help"><span data-icon="cursor"></span>Haz clic en un texto para editar</span></div><div class="canvas-wrap" id="canvas-wrap"><div class="canvas-address"><div class="window-dots"><i></i><i></i><i></i></div><span><span data-icon="lock"></span><span id="site-address">forma-studio.web</span></span><span data-icon="external"></span></div><div id="canvas" class="canvas" aria-label="Vista previa editable"><div class="loading-canvas">Preparando tu espacio…</div></div><div class="canvas-drop-end" id="drop-end"><span data-icon="plus"></span>Arrastra aquí tu próximo módulo</div></div><div class="canvas-bottom"><span class="small-dot"></span>Tu contenido se guarda automáticamente<span>CREADO CON MÓDULO</span></div></div>
+    <div class="statusbar"><span><span class="small-dot"></span>Editor manual</span><span id="canvas-status">Componentes reutilizables · Diseño adaptable</span><span>100%</span></div>
+  </main>
+  <div class="panel-resizer" data-panel-resizer="right" role="separator" tabindex="0" aria-label="Ajustar ancho del panel derecho" aria-orientation="vertical" aria-controls="workspace-right" aria-valuemin="250" aria-valuemax="460" aria-valuenow="280" title="Arrastra para ajustar el ancho. Usa las flechas o haz doble clic para restablecer."></div>
+  <aside class="right-panel" id="workspace-right" aria-label="Biblioteca de módulos"><div class="library-title"><div><span class="overline">CONSTRUYE A TU MANERA</span><h2>Biblioteca de módulos</h2></div><span class="library-count">09</span></div><p class="library-description">Arrastra, personaliza y hazlo tuyo.</p><div class="module-search"><span data-icon="search"></span><input id="module-search" type="search" placeholder="Buscar un módulo…" aria-label="Buscar módulos"><kbd>/</kbd></div><div class="category-tabs" id="category-tabs"><button class="active" data-category="Todos">Todos</button><button data-category="Esenciales">Esenciales</button><button data-category="Contenido">Contenido</button><button data-category="Ventas">Ventas</button><button data-category="Confianza">Confianza</button></div><div class="library-section-label">MÓDULOS DISPONIBLES <span id="library-result-count">9</span></div><div id="module-library" class="module-library"></div><div class="library-footer"><span data-icon="shield"></span>Diseños consistentes. Infinitas posibilidades.</div></aside>
+</div>
+<div id="toast" class="toast" role="status" hidden></div>
+<dialog id="modal" class="modal"><div class="modal-shell"><header class="modal-header"><div><span id="modal-eyebrow" class="overline">TU ESPACIO CREATIVO</span><h2 id="modal-title"></h2></div><button id="close-modal" class="icon-button" aria-label="Cerrar"><span data-icon="close"></span></button></header><div id="modal-content"></div></div></dialog>
+<input type="file" id="image-upload" accept="image/png,image/jpeg,image/webp" hidden><input type="file" id="project-import" accept="application/json,.json" hidden>
+</body></html>
