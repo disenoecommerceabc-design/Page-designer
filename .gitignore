@@ -1,6 +1,5 @@
-/.env
-/.env.*
-!/.env.example
-/cloudrun.env.yaml
-/page-builder-*.tar
-/page-builder-*.tar.sha256
+**/.env*
+**/.dev.vars*
+**/__pycache__/
+**/node_modules/
+**/landing_dist/

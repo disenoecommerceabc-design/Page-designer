@@ -8,7 +8,7 @@ COPY FRONT/public/favicon.svg ./public/favicon.svg
 RUN npm run build:landing
 
 FROM python:3.14-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f
-ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 MODULO_CONTAINER=1 PORT=8000
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 MODULO_CONTAINER=1 PORT=8080
 WORKDIR /app
 COPY ["TAREA FINAL/MODULO WEB_ARMABLE/requirements.txt", "./"]
 RUN pip install --no-cache-dir -r requirements.txt \
@@ -18,6 +18,6 @@ COPY ["TAREA FINAL/MODULO WEB_ARMABLE/app", "./app"]
 COPY --from=landing ["/build/TAREA FINAL/MODULO WEB_ARMABLE/app/landing_dist", "./app/landing_dist"]
 USER editor
 LABEL org.opencontainers.image.title="Page Builder" org.opencontainers.image.version="1.3.5"
-EXPOSE 8000
+EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s CMD ["python", "-m", "app.healthcheck"]
 CMD ["python", "-m", "app.serve"]
