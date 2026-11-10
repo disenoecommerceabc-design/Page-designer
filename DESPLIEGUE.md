@@ -32,6 +32,25 @@ La versión Cloudflare de `FRONT` conserva sus comandos y sus datos D1/R2. El co
 
 ## Google Cloud Run
 
+### Desde GitHub con Cloud Build
+
+Selecciona la rama que quieres desplegar y usa `/Dockerfile` (el de la raíz del repositorio). La imagen de la raíz incluye la landing y el editor; `FRONT` por sí solo no construye esa imagen. En Cloud Run, deja vacíos los campos de comando y argumentos del contenedor para usar `python -m app.serve`, y deja el puerto del contenedor en `8080`. Cloud Run inyecta `PORT`; no lo agregues como variable manual.
+
+Antes de implementar la revisión, agrega en **Variables y secretos** los valores de [`cloudrun.env.yaml.example`](cloudrun.env.yaml.example). Para una demo, `ALLOW_EPHEMERAL_DATA=true` autoriza el uso de almacenamiento temporal. Vincula también los siguientes secretos como variables de entorno:
+
+| Variable | Secreto de ejemplo | Requisito |
+| --- | --- | --- |
+| `ADMIN_PASSWORD` | `page-builder-admin-password` | Contraseña de al menos 16 caracteres |
+| `SESSION_SECRET` | `page-builder-session-secret` | Valor aleatorio estable de al menos 32 caracteres |
+
+Da a la cuenta de servicio que **ejecuta la revisión** el rol `roles/secretmanager.secretAccessor` sobre ambos secretos. El archivo de ejemplo no se aplica automáticamente al compilar desde GitHub. [Despliegue continuo](https://docs.cloud.google.com/run/docs/continuous-deployment) · [Configurar secretos](https://docs.cloud.google.com/run/docs/configuring/services/secrets).
+
+Para usar Kie.ai, crea un secreto `page-builder-kie-api-key` con tu clave de Kie.ai y da a la misma cuenta de servicio acceso de lectura a ese secreto. En Cloud Run, vincúlalo como variable `KIE_API_KEY` y cambia `AI_ENABLED` a `true`. Mantén tu `.env` fuera de Git: Docker Compose lo usa en local, pero Cloud Run recibe la clave desde Secret Manager al arrancar. Si no necesitas IA, deja `AI_ENABLED=false`; la clave de Kie.ai no es necesaria para el arranque.
+
+Si Cloud Run indica que el contenedor no escuchó en `PORT=8080`, abre los logs de la revisión y busca el primer error del contenedor en `stderr`. Si falta la autorización de almacenamiento temporal, un secreto válido o `COOKIE_SECURE=true`, la aplicación se cierra antes de escuchar; ampliar el tiempo de inicio no corrige esa configuración. Si usas una sonda HTTP de inicio, configura `GET /health` en el puerto `8080`.
+
+### Desde una imagen de Artifact Registry
+
 Se necesita un proyecto, un repositorio Docker en Artifact Registry y una cuenta de servicio de Cloud Run con acceso a los secretos. Habilita Cloud Run, Artifact Registry y Secret Manager en tu proyecto. Crea `page-builder-admin-password` con una contraseña de al menos 16 caracteres y `page-builder-session-secret` con un valor aleatorio estable de al menos 32 caracteres. Para habilitar Kie.ai, crea también `page-builder-kie-api-key` en Secret Manager y cambia `AI_ENABLED` a `"true"` en una copia privada de `cloudrun.env.yaml.example`.
 
 Ejecuta desde la raíz del repositorio en Bash. Sustituye el proyecto, el repositorio de Artifact Registry y la cuenta de servicio. Concede a esa cuenta acceso de lectura a los secretos requeridos.
